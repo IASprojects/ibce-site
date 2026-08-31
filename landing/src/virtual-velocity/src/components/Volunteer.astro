@@ -4,6 +4,7 @@ import { getTranslations } from '../i18n/ui';
 const t = getTranslations(Astro.currentLocale ?? 'es');
 
 const heroMsg = encodeURIComponent('Hola, quiero unirme a un equipo de servicio en IBCE.');
+// TODO: reemplazar el número de WhatsApp de ejemplo (50600000000) por el número real.
 const whatsAppUrl = `https://wa.me/50600000000?text=${heroMsg}`;
 
 const teams = [

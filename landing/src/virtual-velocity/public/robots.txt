@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iasprojects.github.io/ibce-site/sitemap-index.xml

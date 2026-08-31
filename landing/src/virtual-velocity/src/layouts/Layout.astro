@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
 
 interface Props {
 	title: string;
@@ -8,6 +9,46 @@ interface Props {
 
 const { title, description = '' } = Astro.props;
 const lang = Astro.currentLocale ?? 'es';
+const pathWithoutBase = '/' + Astro.url.pathname.replace(new RegExp(`^${import.meta.env.BASE_URL}`), '');
+const pathNoLocale = pathWithoutBase.replace(/^\/(en|es)(?=\/|$)/, '');
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const localeEs = getAbsoluteLocaleUrl('es', pathNoLocale);
+const localeEn = getAbsoluteLocaleUrl('en', pathNoLocale);
+const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
+const ogLocaleAlt = lang === 'en' ? 'es_ES' : 'en_US';
+const ogTitle = title;
+const ogDescription = description;
+
+const structuredData = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Church',
+	name: 'Iglesia Bíblica Camino de Esperanza - IBCE',
+	description:
+		lang === 'en'
+			? 'A place where you find community, faith, and hope.'
+			: 'Un lugar donde encuentras comunidad, fe y esperanza.',
+	url: canonical,
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: 'Guayabo de Bagaces',
+		addressRegion: 'Guanacaste',
+		addressCountry: 'CR',
+	},
+	openingHoursSpecification: [
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: 'Sunday',
+			opens: '09:00',
+			closes: '11:00',
+		},
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: 'Wednesday',
+			opens: '19:00',
+			closes: '21:00',
+		},
+	],
+});
 ---
 
 <!doctype html>
@@ -15,10 +56,26 @@ const lang = Astro.currentLocale ?? 'es';
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#fef9f0" />
 		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
 		<link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+		<link rel="canonical" href={canonical} />
+		<link rel="alternate" hreflang="es" href={localeEs} />
+		<link rel="alternate" hreflang="en" href={localeEn} />
+		<link rel="alternate" hreflang="x-default" href={localeEs} />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={ogTitle} />
+		<meta property="og:description" content={ogDescription} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:site_name" content="Iglesia Bíblica Camino de Esperanza - IBCE" />
+		<meta property="og:locale:alternate" content={ogLocaleAlt} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={ogTitle} />
+		<meta name="twitter:description" content={ogDescription} />
+		<script is:inline type="application/ld+json" set:html={structuredData} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

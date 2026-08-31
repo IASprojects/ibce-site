@@ -2,6 +2,9 @@
 dist/
 # generated types
 .astro/
+# generated skills cache
+.agents/
+skills-lock.json
 
 # dependencies
 node_modules/

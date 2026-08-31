@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://IASprojects.github.io',
+	site: 'https://iasprojects.github.io',
 	base: '/ibce-site/',
+	integrations: [sitemap()],
 	i18n: {
 		defaultLocale: 'es',
 		locales: ['es', 'en'],

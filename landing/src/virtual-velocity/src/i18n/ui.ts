@@ -110,9 +110,11 @@ const ui = {
 		'donaciones.sinpe.title': 'SINPE Móvil',
 		'donaciones.sinpe.body':
 			'Transfiere desde tu banco con el número de teléfono. (Datos de ejemplo: +506 0000 0000)',
+		// TODO: reemplazar los datos de ejemplo (teléfono SINPE) por los datos reales de la iglesia.
 		'donaciones.bank.title': 'Transferencia bancaria',
 		'donaciones.bank.body':
 			'Cuenta oficial en dólares y colones. (Datos de ejemplo: cuenta BAC 000-000-000)',
+		// TODO: reemplazar la cuenta bancaria de ejemplo por la cuenta oficial real.
 		'donaciones.offering.title': 'Ofrenda en el servicio',
 		'donaciones.offering.body':
 			'También puedes aportar los domingos durante la reunión de adoración.',
@@ -123,6 +125,7 @@ const ui = {
 		'contacto.phone.value': '+506 0000 0000',
 		'contacto.whatsapp.label': 'WhatsApp',
 		'contacto.whatsapp.value': '+506 0000 0000',
+		// TODO: reemplazar el teléfono y WhatsApp de ejemplo (+506 0000 0000) por los números reales.
 		'contacto.email.label': 'Correo',
 		'contacto.email.value': 'info@ibce.cr',
 		'contacto.address.label': 'Dirección',
@@ -252,9 +255,11 @@ const ui = {
 		'donaciones.sinpe.title': 'SINPE Móvil',
 		'donaciones.sinpe.body':
 			'Transfer from your bank using the phone number. (Sample data: +506 0000 0000)',
+		// TODO: reemplazar los datos de ejemplo (teléfono SINPE) por los datos reales de la iglesia.
 		'donaciones.bank.title': 'Bank Transfer',
 		'donaciones.bank.body':
 			'Official account in US dollars and colones. (Sample data: BAC account 000-000-000)',
+		// TODO: reemplazar la cuenta bancaria de ejemplo por la cuenta oficial real.
 		'donaciones.offering.title': 'In-Person Offering',
 		'donaciones.offering.body':
 			'You can also give on Sundays during the worship service.',
@@ -265,6 +270,7 @@ const ui = {
 		'contacto.phone.value': '+506 0000 0000',
 		'contacto.whatsapp.label': 'WhatsApp',
 		'contacto.whatsapp.value': '+506 0000 0000',
+		// TODO: reemplazar el teléfono y WhatsApp de ejemplo (+506 0000 0000) por los números reales.
 		'contacto.email.label': 'Email',
 		'contacto.email.value': 'info@ibce.cr',
 		'contacto.address.label': 'Address',
