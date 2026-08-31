@@ -47,12 +47,13 @@ function isActive(href: string): boolean {
 <header
 	class="shadow-sm fixed top-0 left-0 w-full z-50 flex items-center justify-between px-gutter py-base bg-surface-container-low"
 >
-	<div class="flex items-center gap-2">
-		<img src={IBCELogo.src} alt="IBCE Logo" class="w-16 h-16" />
+	<div class="flex flex-1 min-w-0 items-center gap-2">
+		<img src={IBCELogo.src} alt="IBCE Logo" class="w-16 h-16 shrink-0" />
 		<h1
-			class="font-headline-md text-headline-md font-bold text-primary truncate max-w-[200px] md:max-w-full"
+			class="min-w-0 font-headline-md text-headline-md font-bold leading-tight text-primary"
 		>
-			{t["header.brand"]}
+			<span class="sm:hidden">{t["header.brandAbbr"]}</span>
+			<span class="hidden sm:inline">{t["header.brand"]}</span>
 		</h1>
 	</div>
 	<nav class="hidden lg:flex items-center gap-1">

@@ -20,14 +20,14 @@ const items = [
 ---
 
 <nav
-	class="md:hidden bg-surface-container fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe rounded-t-xl"
+	class="md:hidden bg-surface-container dark:bg-surface-container-highest fixed bottom-0 left-0 w-full z-50 grid grid-cols-4 gap-1 items-center px-2 py-2 pb-safe rounded-t-xl"
 >
 	{
 		items.map((item) => (
 			<a
 				href={item.href}
 				class:list={[
-					'flex flex-col items-center justify-center rounded-full px-4 py-1 transition-all active:scale-90 duration-200',
+					'flex min-w-0 flex-col items-center justify-center text-center rounded-full py-1 transition-all active:scale-90 duration-200',
 					{
 						'bg-primary-container text-on-primary-container': isActive(item.href),
 						'text-on-surface-variant hover:text-primary': !isActive(item.href),
@@ -37,7 +37,7 @@ const items = [
 				<span class:list={['material-symbols-outlined', { 'fill-icon': isActive(item.href) }]} data-icon={item.icon}>
 					{item.icon}
 				</span>
-				<span class="font-label-caps text-label-caps mt-1">{item.label}</span>
+				<span class="hidden xs:block max-w-full font-label-caps text-label-caps leading-tight mt-1 truncate">{item.label}</span>
 			</a>
 		))
 	}

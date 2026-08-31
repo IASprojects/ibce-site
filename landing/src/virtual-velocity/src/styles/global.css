@@ -87,6 +87,7 @@
 	--text-label-caps--letter-spacing: 0.1em;
 
 	/* Spacing */
+	--breakpoint-xs: 30rem;
 	--spacing-base: 8px;
 	--spacing-stack-sm: 12px;
 	--spacing-stack-md: 24px;
