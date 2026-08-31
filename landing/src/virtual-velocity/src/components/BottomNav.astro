@@ -7,10 +7,8 @@ const t = getTranslations(currentLocale);
 const pathname = Astro.url.pathname;
 
 function isActive(href: string): boolean {
-	if (href === '/' || href === '/en/') {
-		return pathname === '/' || pathname === '/en' || pathname === '/en/';
-	}
-	return pathname === href;
+	const normalize = (s: string) => s.replace(/\/+$/, '');
+	return normalize(href) === normalize(pathname);
 }
 
 const items = [
