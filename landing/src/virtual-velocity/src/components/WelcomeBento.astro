@@ -1,0 +1,60 @@
+---
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations(Astro.currentLocale ?? 'es');
+
+const cards = [
+	{
+		icon: 'waving_hand',
+		iconWrap: 'bg-secondary-container text-on-secondary-container',
+		title: t['welcome.card1.title'],
+		subtitle: t['welcome.card1.subtitle'],
+		subtitleColor: 'text-secondary',
+		body: t['welcome.card1.body'],
+	},
+	{
+		icon: 'family_restroom',
+		iconWrap: 'bg-tertiary-fixed text-on-tertiary-fixed',
+		title: t['welcome.card2.title'],
+		subtitle: t['welcome.card2.subtitle'],
+		subtitleColor: 'text-tertiary',
+		body: t['welcome.card2.body'],
+	},
+	{
+		icon: 'menu_book',
+		iconWrap: 'bg-primary-container text-on-primary-container',
+		title: t['welcome.card3.title'],
+		subtitle: t['welcome.card3.subtitle'],
+		subtitleColor: 'text-primary',
+		body: t['welcome.card3.body'],
+	},
+];
+---
+
+<section id="visitanos" class="mb-section-gap">
+	<div class="text-center mb-stack-md max-w-2xl mx-auto">
+		<h3 class="font-headline-md text-headline-md text-primary mb-2">
+			{t['welcome.heading']}
+			<span class="block text-sm italic text-on-surface-variant font-normal">{t['welcome.remark']}</span>
+		</h3>
+		<p class="text-on-surface-variant">{t['welcome.paragraph']}</p>
+	</div>
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+		{
+			cards.map((card) => (
+				<div
+					class="bg-surface-container-low rounded-xl p-6 border border-surface-container-highest/50 shadow-[0_4px_20px_rgba(160,63,40,0.04)] flex flex-col items-center text-center group hover:bg-surface-container transition-colors"
+				>
+					<div
+						class={`w-16 h-16 rounded-full ${card.iconWrap} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+					>
+						<span class="material-symbols-outlined text-3xl" data-icon={card.icon}>{card.icon}</span>
+					</div>
+					<h4 class="font-headline-md text-body-lg font-semibold text-on-surface mb-2">{card.title}</h4>
+					<span class={`text-sm italic ${card.subtitleColor} mb-3`}>{card.subtitle}</span>
+					<p class="text-on-surface-variant text-sm">{card.body}</p>
+				</div>
+			))
+		}
+	</div>
+</section>

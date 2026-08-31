@@ -1,0 +1,93 @@
+---
+import { getTranslations } from '../i18n/ui';
+import { Image } from 'astro:assets';
+import galeria01 from '/public/assets/images/gallery/nosotros-01.png';
+import galeria02 from '/public/assets/images/gallery/nosotros-02.png';
+import galeria03 from '/public/assets/images/gallery/nosotros-03.png';
+import galeria04 from '/public/assets/images/gallery/nosotros-04.png';
+import IBCELogo from '/public/assets/images/logo-ibce.svg';
+
+const t = getTranslations(Astro.currentLocale ?? 'es');
+
+const values = [
+	{ label: t['nosotros.values.item1'], icon: 'waving_hand' },
+	{ label: t['nosotros.values.item2'], icon: 'menu_book' },
+	{ label: t['nosotros.values.item3'], icon: 'volunteer_activism' },
+	{ label: t['nosotros.values.item4'], icon: 'verified' },
+];
+
+const galleryImages = [galeria01, galeria02, galeria03, galeria04];
+---
+
+<section id="nosotros" class="mb-section-gap">
+	<div class="text-center mb-stack-md max-w-2xl mx-auto">		
+		<img src={IBCELogo.src} alt="IBCE Logo" class="w-50 h-50 mx-auto mb-4" />
+		<h3 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">
+			{t['nosotros.title']}
+		</h3>
+		<p class="text-on-surface-variant">{t['nosotros.subtitle']}</p>
+	</div>
+
+	<article
+		class="bg-surface-container-low rounded-xl p-6 md:p-10 border border-surface-container-highest/50 shadow-[0_4px_20px_rgba(160,63,40,0.04)] mb-stack-md"
+	>
+		<h4 class="font-headline-md text-headline-md text-primary mb-3">{t['nosotros.history.title']}</h4>
+		<p class="text-on-surface-variant mb-4">{t['nosotros.history.body1']}</p>
+		<p class="text-on-surface-variant">{t['nosotros.history.body2']}</p>
+	</article>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-stack-md">
+		<div class="bg-secondary-container rounded-xl p-6 border border-surface-container-highest/50 flex flex-col">
+			<div class="w-14 h-14 rounded-full bg-secondary text-on-secondary flex items-center justify-center mb-4">
+				<span class="material-symbols-outlined text-3xl" data-icon="flag">flag</span>
+			</div>
+			<h4 class="font-headline-md text-headline-md text-on-secondary-container mb-2">
+				{t['nosotros.mission.title']}
+			</h4>
+			<p class="text-on-secondary-container">{t['nosotros.mission.body']}</p>
+		</div>
+		<div class="bg-tertiary-fixed rounded-xl p-6 border border-surface-container-highest/50 flex flex-col">
+			<div class="w-14 h-14 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center mb-4">
+				<span class="material-symbols-outlined text-3xl" data-icon="visibility">visibility</span>
+			</div>
+			<h4 class="font-headline-md text-headline-md text-on-tertiary-fixed mb-2">
+				{t['nosotros.vision.title']}
+			</h4>
+			<p class="text-on-tertiary-fixed">{t['nosotros.vision.body']}</p>
+		</div>
+	</div>
+
+	<div class="mb-stack-md">
+		<p class="font-label-caps text-label-caps text-secondary uppercase mb-3">{t['nosotros.values.label']}</p>
+		<div class="flex flex-wrap gap-3">
+			{
+				values.map((value) => (
+					<span
+						class="inline-flex items-center gap-2 bg-secondary-container/60 text-on-secondary-container px-4 py-2 rounded-full border border-secondary/30"
+					>
+						<span class="material-symbols-outlined text-lg" data-icon={value.icon}>{value.icon}</span>
+						{value.label}
+					</span>
+				))
+			}
+		</div>
+	</div>
+
+	<div>
+		<h4 class="font-headline-md text-headline-md text-primary mb-2">{t['nosotros.gallery.title']}</h4>
+		<p class="text-on-surface-variant text-sm mb-6">{t['nosotros.gallery.body']}</p>
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+			{
+				galleryImages.map((img) => (
+					<Image
+						src={img}
+						alt={t['nosotros.gallery.title']}
+						class="aspect-[4/3] rounded-xl object-cover border border-outline-variant/40"
+						widths={[200, 400]}
+						sizes="(max-width: 768px) 50vw, 25vw"
+					/>
+				))
+			}
+		</div>
+	</div>
+</section>

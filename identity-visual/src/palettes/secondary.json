@@ -1,0 +1,11 @@
+{
+  "name": "Secondary",
+  "description": "Deep sage for growth, secondary actions, and success states.",
+  "colors": {
+    "secondary": "#466556",
+    "secondary-container": "#c8ead8",
+    "on-secondary": "#ffffff",
+    "secondary-fixed": "#c8ead8",
+    "secondary-fixed-dim": "#adcebc"
+  }
+}

@@ -1,0 +1,78 @@
+---
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations(Astro.currentLocale ?? 'es');
+
+const heroMsg = encodeURIComponent('Hola, quiero unirme a un equipo de servicio en IBCE.');
+const whatsAppUrl = `https://wa.me/50600000000?text=${heroMsg}`;
+
+const teams = [
+	{
+		icon: 'volunteer_activism',
+		iconWrap: 'bg-primary-container text-on-primary-container',
+		title: t['voluntariado.team1.title'],
+		body: t['voluntariado.team1.body'],
+	},
+	{
+		icon: 'elderly',
+		iconWrap: 'bg-secondary-container text-on-secondary-container',
+		title: t['voluntariado.team2.title'],
+		body: t['voluntariado.team2.body'],
+	},
+	{
+		icon: 'home_repair_service',
+		iconWrap: 'bg-tertiary-fixed text-on-tertiary-fixed',
+		title: t['voluntariado.team3.title'],
+		body: t['voluntariado.team3.body'],
+	},
+	{
+		icon: 'music_note',
+		iconWrap: 'bg-primary-container text-on-primary-container',
+		title: t['voluntariado.team4.title'],
+		body: t['voluntariado.team4.body'],
+	},
+];
+---
+
+<section id="voluntariado" class="mb-section-gap">
+	<div class="text-center mb-stack-md max-w-2xl mx-auto">
+		<h3 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">
+			{t['voluntariado.title']}
+		</h3>
+		<p class="text-on-surface-variant">{t['voluntariado.subtitle']}</p>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-stack-md">
+		{
+			teams.map((team) => (
+				<div
+					class="bg-surface-container-low rounded-xl p-6 border border-surface-container-highest/50 flex items-start gap-4 hover:bg-surface-container transition-colors"
+				>
+					<div
+						class={`w-14 h-14 rounded-full ${team.iconWrap} flex items-center justify-center shrink-0`}
+					>
+						<span class="material-symbols-outlined text-3xl" data-icon={team.icon}>{team.icon}</span>
+					</div>
+					<div>
+						<h4 class="font-headline-md text-headline-md text-on-surface mb-2">{team.title}</h4>
+						<p class="text-on-surface-variant text-sm">{team.body}</p>
+					</div>
+				</div>
+			))
+		}
+	</div>
+
+	<div class="text-center bg-secondary-container rounded-xl p-6 md:p-10 border border-surface-container-highest/50">
+		<span class="material-symbols-outlined text-5xl text-secondary" data-icon="handshake">handshake</span>
+		<p class="text-on-secondary-container mt-4 mb-6">{t['voluntariado.ctaHint']}</p>
+		<a
+			href={whatsAppUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 h-12 inline-flex"
+		>
+			<span class="material-symbols-outlined" data-icon="send">send</span>
+			{t['voluntariado.cta']}
+		</a>
+	</div>
+</section>

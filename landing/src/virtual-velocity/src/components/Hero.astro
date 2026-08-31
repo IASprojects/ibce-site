@@ -1,0 +1,52 @@
+---
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations(Astro.currentLocale ?? 'es');
+
+const ctaNewUrl =
+	'https://docs.google.com/forms/d/e/1FAIpQLScOfvXhiLUKsv11nsDPHeYaNmFvrRtczR_CFmcIkvU9SclyNw/viewform?usp=publish-editor';
+const ctaLearnUrl = 'https://www.facebook.com/iglesiabiblicacaminoesperanza';
+---
+
+<section
+	id="inicio"
+	class="relative rounded-xl overflow-hidden mb-section-gap min-h-[707px] flex flex-col justify-end p-6 md:p-12 shadow-sm border border-outline-variant/30"
+>
+	<div
+		class="absolute inset-0 bg-cover bg-center"
+		role="img"
+		aria-label={t['hero.title']}
+		style="background-image: url('/assets/images/herosample.png')"
+	></div>
+	<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent"></div>
+	<div class="relative z-10 max-w-2xl text-center md:text-left mx-auto md:mx-0">
+		<div
+			class="inline-flex items-center gap-2 bg-surface/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full mb-6 border border-primary/20"
+		>
+			<span class="material-symbols-outlined text-[16px] fill-icon" data-icon="location_on">location_on</span>
+			<span class="font-label-caps text-label-caps">{t['hero.badge']}</span>
+		</div>
+		<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">
+			{t['hero.title']}
+			<span class="block text-primary/80 text-[0.7em] mt-2 font-normal leading-tight">{t['hero.subtitle']}</span>
+		</h2>	
+		<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+			<a
+				href={ctaNewUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex items-center justify-center gap-2 h-12"
+			>
+				{t['hero.ctaNew']}
+			</a>
+			<a
+				href={ctaLearnUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="bg-transparent border-2 border-secondary text-secondary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2 h-12"
+			>
+				{t['hero.ctaLearn']}
+			</a>
+		</div>
+	</div>
+</section>

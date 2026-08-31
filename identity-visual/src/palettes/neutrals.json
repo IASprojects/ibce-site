@@ -1,0 +1,15 @@
+{
+  "name": "Neutrals",
+  "description": "Warm sand surfaces and charcoal text for readable interfaces.",
+  "colors": {
+    "background": "#fef9f0",
+    "surface": "#fef9f0",
+    "surface-container": "#f2ede4",
+    "surface-container-high": "#ece8df",
+    "surface-container-highest": "#e7e2d9",
+    "on-surface": "#1d1c16",
+    "on-surface-variant": "#56423d",
+    "outline": "#8a726c",
+    "outline-variant": "#ddc0ba"
+  }
+}

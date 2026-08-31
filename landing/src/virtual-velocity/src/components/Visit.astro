@@ -1,0 +1,156 @@
+---
+import { getTranslations } from "../i18n/ui";
+
+const t = getTranslations(Astro.currentLocale ?? "es");
+
+const schedule = [
+	{
+		weekday: t["visitanos.schedule.sun.weekday"],
+		time: t["visitanos.schedule.sun.time"],
+		activity: t["visitanos.schedule.sun.activity"],
+		icon: "celebration",
+	},
+	{
+		weekday: t["visitanos.schedule.wed.weekday"],
+		time: t["visitanos.schedule.wed.time"],
+		activity: t["visitanos.schedule.wed.activity"],
+		icon: "menu_book",
+	},
+];
+
+const steps = [
+	{
+		title: t["visitanos.steps.step1"],
+		body: t["visitanos.steps.desc1"],
+		icon: "schedule",
+	},
+	{
+		title: t["visitanos.steps.step2"],
+		body: t["visitanos.steps.desc2"],
+		icon: "emoji_people",
+	},
+	{
+		title: t["visitanos.steps.step3"],
+		body: t["visitanos.steps.desc3"],
+		icon: "family_restroom",
+	},
+	{
+		title: t["visitanos.steps.step4"],
+		body: t["visitanos.steps.desc4"],
+		icon: "coffee",
+	},
+];
+
+const mapUrl = "https://maps.app.goo.gl/LconsVrxbwAN5QmP6";
+const wazeUrl = "https://waze.com/ul/hd1gkusmbu";
+---
+
+<section id="visitanos" class="mb-section-gap">
+	<div class="text-center mb-stack-md max-w-2xl mx-auto">
+		<h3
+			class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2"
+		>
+			{t["visitanos.title"]}
+		</h3>
+		<p class="text-on-surface-variant">{t["visitanos.subtitle"]}</p>
+	</div>
+	<div class="text-center">		
+		<p class="text-on-surface-variant mb-4 flex items-start gap-2 justify-center">
+			<span
+				class="material-symbols-outlined text-primary"
+				data-icon="home_pin">home_pin</span
+			>
+			{t["visitanos.location.address"]}
+		</p>
+		<div class="flex flex-col sm:flex-row gap-6 justify-center mb-stack-md">
+			<a
+				href={mapUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 h-12"
+			>
+				<span class="material-symbols-outlined" data-icon="map"
+					>map</span
+				>
+				{t["visitanos.location.mapCta"]}
+			</a>
+			<a
+				href={wazeUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="bg-transparent border-2 border-secondary text-secondary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2 h-12"
+			>
+				<span class="material-symbols-outlined" data-icon="directions"
+					>directions</span
+				>
+				{t["visitanos.location.wazeCta"]}
+			</a>
+		</div>
+	</div>
+	<div class="mb-stack-md">
+		<h4
+			class="font-headline-md text-headline-md text-primary text-center mb-6"
+		>
+			{t["visitanos.schedule.title"]}
+		</h4>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+			{
+				schedule.map((item) => (
+					<div class="bg-surface-container-low rounded-xl p-6 border border-surface-container-highest/50 flex items-start gap-4 hover:bg-surface-container transition-colors">
+						<div class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+							<span
+								class="material-symbols-outlined text-3xl"
+								data-icon={item.icon}
+							>
+								{item.icon}
+							</span>
+						</div>
+						<div>
+							<p class="font-label-caps text-label-caps text-secondary uppercase">
+								{item.weekday} · {item.time}
+							</p>
+							<p class="text-on-surface font-semibold">
+								{item.activity}
+							</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+
+	<div
+		class="bg-surface-container-low rounded-xl p-6 md:p-10 border border-surface-container-highest/50 mb-stack-md"
+	>
+		<h4
+			class="font-headline-md text-headline-md text-primary text-center mb-6"
+		>
+			{t["visitanos.steps.title"]}
+		</h4>
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+			{
+				steps.map((step, i) => (
+					<div class="flex items-start gap-4">
+						<span class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 font-label-caps">
+							{i + 1}
+						</span>
+						<div>
+							<p class="font-semibold text-on-surface flex items-center gap-2 mb-1">
+								<span
+									class="material-symbols-outlined text-lg text-secondary"
+									data-icon={step.icon}
+								>
+									{step.icon}
+								</span>
+								{step.title}
+							</p>
+							<p class="text-on-surface-variant text-sm">
+								{step.body}
+							</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,91 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getTranslations } from "../i18n/ui";
+import IBCELogo from "/public/assets/images/logo-ibce.svg";
+
+const currentLocale = Astro.currentLocale ?? "es";
+const otherLocale = currentLocale === "es" ? "en" : "es";
+const otherUrl = otherLocale === "es" ? "/" : getRelativeLocaleUrl("en", "/");
+const t = getTranslations(currentLocale);
+
+const pathname = Astro.url.pathname;
+
+const navItems = [
+	{
+		href: getRelativeLocaleUrl(currentLocale, "/"),
+		label: t["nav.home"],
+		icon: "home",
+	},
+	{
+		href: getRelativeLocaleUrl(currentLocale, "/visitanos"),
+		label: t["nav.visit"],
+		icon: "location_on",
+	},
+	{
+		href: getRelativeLocaleUrl(currentLocale, "/nosotros"),
+		label: t["nav.about"],
+		icon: "groups",
+	},
+	{
+		href: getRelativeLocaleUrl(currentLocale, "/voluntariado"),
+		label: t["nav.volunteer"],
+		icon: "volunteer_activism",
+	},
+	{
+		href: getRelativeLocaleUrl(currentLocale, "/donaciones"),
+		label: t["nav.donate"],
+		icon: "payments",
+	},
+];
+
+function isActive(href: string): boolean {
+	if (href === "/" || href === "/en/") {
+		return pathname === "/" || pathname === "/en" || pathname === "/en/";
+	}
+	return pathname === href;
+}
+---
+
+<header
+	class="bg-surface shadow-sm fixed top-0 left-0 w-full z-50 flex items-center justify-between px-gutter py-base bg-surface-container-low dark:bg-surface-container-high"
+>
+	<div class="flex items-center gap-2">
+		<img src={IBCELogo.src} alt="IBCE Logo" class="w-16 h-16" />
+		<h1
+			class="font-headline-md text-headline-md font-bold text-primary truncate max-w-[200px] md:max-w-full"
+		>
+			{t["header.brand"]}
+		</h1>
+	</div>
+	<nav class="hidden lg:flex items-center gap-1">
+		{
+			navItems.map((item) => (
+				<a
+					href={item.href}
+					class:list={[
+						"px-3 py-2 rounded-full font-label-caps text-label-caps transition-colors hover:bg-surface-container flex items-center gap-1.5",
+						isActive(item.href)
+							? "bg-primary-container text-on-primary-container"
+							: "text-on-surface-variant hover:text-primary",
+					]}
+				>
+					<span
+						class="material-symbols-outlined text-[16px]"
+						data-icon={item.icon}
+					>
+						{item.icon}
+					</span>
+					{item.label}
+				</a>
+			))
+		}
+	</nav>
+	<div class="flex items-center gap-4">
+		<a
+			href={otherUrl}
+			class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-200"
+		>
+			{t["header.languageSwitch"]}
+		</a>
+	</div>
+</header>

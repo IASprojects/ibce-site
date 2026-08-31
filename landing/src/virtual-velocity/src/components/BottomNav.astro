@@ -1,0 +1,46 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getTranslations } from '../i18n/ui';
+
+const currentLocale = Astro.currentLocale ?? 'es';
+const t = getTranslations(currentLocale);
+const pathname = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+	if (href === '/' || href === '/en/') {
+		return pathname === '/' || pathname === '/en' || pathname === '/en/';
+	}
+	return pathname === href;
+}
+
+const items = [
+	{ href: getRelativeLocaleUrl(currentLocale, '/'), label: t['nav.home'], icon: 'home' },
+	{ href: getRelativeLocaleUrl(currentLocale, '/visitanos'), label: t['nav.visit'], icon: 'location_on' },
+	{ href: getRelativeLocaleUrl(currentLocale, '/voluntariado'), label: t['nav.volunteer'], icon: 'volunteer_activism' },
+	{ href: getRelativeLocaleUrl(currentLocale, '/donaciones'), label: t['nav.donate'], icon: 'payments' },
+];
+---
+
+<nav
+	class="md:hidden bg-surface-container dark:bg-surface-container-highest fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe rounded-t-xl"
+>
+	{
+		items.map((item) => (
+			<a
+				href={item.href}
+				class:list={[
+					'flex flex-col items-center justify-center rounded-full px-4 py-1 transition-all active:scale-90 duration-200',
+					{
+						'bg-primary-container text-on-primary-container': isActive(item.href),
+						'text-on-surface-variant hover:text-primary': !isActive(item.href),
+					},
+				]}
+			>
+				<span class:list={['material-symbols-outlined', { 'fill-icon': isActive(item.href) }]} data-icon={item.icon}>
+					{item.icon}
+				</span>
+				<span class="font-label-caps text-label-caps mt-1">{item.label}</span>
+			</a>
+		))
+	}
+</nav>

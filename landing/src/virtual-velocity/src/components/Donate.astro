@@ -1,0 +1,99 @@
+---
+import { getTranslations } from '../i18n/ui';
+
+const t = getTranslations(Astro.currentLocale ?? 'es');
+
+const integrityPoints = [
+	t['donaciones.integrity.point1'],
+	t['donaciones.integrity.point2'],
+	t['donaciones.integrity.point3'],
+];
+
+const methods = [
+	{
+		icon: 'phone_iphone',
+		iconWrap: 'bg-secondary-container text-on-secondary-container',
+		title: t['donaciones.sinpe.title'],
+		body: t['donaciones.sinpe.body'],
+	},
+	{
+		icon: 'account_balance',
+		iconWrap: 'bg-primary-container text-on-primary-container',
+		title: t['donaciones.bank.title'],
+		body: t['donaciones.bank.body'],
+	},
+	{
+		icon: 'volunteer_activism',
+		iconWrap: 'bg-tertiary-fixed text-on-tertiary-fixed',
+		title: t['donaciones.offering.title'],
+		body: t['donaciones.offering.body'],
+	},
+];
+---
+
+<section id="donaciones" class="mb-section-gap">
+	<div class="text-center mb-stack-md max-w-2xl mx-auto">
+		<h3 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">
+			{t['donaciones.title']}
+		</h3>
+		<p class="text-on-surface-variant">{t['donaciones.subtitle']}</p>
+	</div>
+
+	<div
+		class="bg-surface-container-low rounded-xl p-6 md:p-10 border border-surface-container-highest/50 flex flex-col items-start mb-stack-md"
+	>
+		<div class="flex items-center gap-3 mb-4">
+			<span class="material-symbols-outlined text-3xl text-primary fill-icon" data-icon="verified_user">
+				verified_user
+			</span>
+			<h4 class="font-headline-md text-headline-md text-on-surface">{t['donaciones.integrity.title']}</h4>
+		</div>
+		<p class="text-on-surface-variant mb-6">{t['donaciones.integrity.body']}</p>
+		<ul class="space-y-3 w-full">
+			{
+				integrityPoints.map((point) => (
+					<li class="flex items-start gap-3 text-on-surface">
+						<span
+							class="material-symbols-outlined text-secondary text-lg shrink-0 mt-0.5"
+							data-icon="check_circle"
+						>
+							check_circle
+						</span>
+						{point}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+
+	<h4 class="font-headline-md text-headline-md text-primary text-center mb-6">
+		{t['donaciones.methods.title']}
+	</h4>
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-stack-md">
+		{
+			methods.map((method) => (
+				<div
+					class="bg-surface-container-low rounded-xl p-6 border border-surface-container-highest/50 flex flex-col items-center text-center hover:bg-surface-container transition-colors"
+				>
+					<div
+						class={`w-14 h-14 rounded-full ${method.iconWrap} flex items-center justify-center mb-4`}
+					>
+						<span class="material-symbols-outlined text-3xl" data-icon={method.icon}>{method.icon}</span>
+					</div>
+					<h5 class="font-headline-md text-headline-md text-on-surface mb-2">{method.title}</h5>
+					<p class="text-on-surface-variant text-sm">{method.body}</p>
+				</div>
+			))
+		}
+	</div>
+
+	<div class="text-center">
+		<a
+			href="#contacto"
+			class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 h-12 inline-flex"
+		>
+			<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+			{t['donaciones.cta']}
+		</a>
+	</div>
+</section>

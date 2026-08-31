@@ -1,0 +1,35 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getTranslations } from '../i18n/ui';
+
+const currentLocale = Astro.currentLocale ?? 'es';
+const t = getTranslations(currentLocale);
+
+const links = [
+	{ href: getRelativeLocaleUrl(currentLocale, '/visitanos'), label: t['footer.address'] },
+	{ href: getRelativeLocaleUrl(currentLocale, '/contacto'), label: t['footer.contact'] },
+	{ href: `${getRelativeLocaleUrl(currentLocale, '/contacto')}#oracion`, label: t['footer.prayer'] },
+	{ href: getRelativeLocaleUrl(currentLocale, '/donaciones'), label: t['footer.financial'] },
+];
+---
+
+<footer
+	class="bg-surface-container-high dark:bg-surface-container-highest w-full px-gutter py-section-gap flex flex-col items-center space-y-stack-md mt-section-gap mb-16 md:mb-0"
+>
+	<div class="font-headline-md text-headline-md text-primary text-center">{t['footer.brand']}</div>
+	<div class="flex flex-wrap justify-center gap-6">
+		{
+			links.map((link) => (
+				<a
+					href={link.href}
+					class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100"
+				>
+					{link.label}
+				</a>
+			))
+		}
+	</div>
+	<p class="font-body-md text-body-md text-on-surface text-center opacity-70 mt-8">
+		{t['footer.copyright']}
+	</p>
+</footer>

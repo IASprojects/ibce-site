@@ -1,0 +1,11 @@
+{
+  "name": "Primary",
+  "description": "Terracotta for primary actions and brand identifiers.",
+  "colors": {
+    "primary": "#a03f28",
+    "primary-container": "#c0573e",
+    "on-primary": "#ffffff",
+    "primary-fixed": "#ffdad2",
+    "primary-fixed-dim": "#ffb4a3"
+  }
+}

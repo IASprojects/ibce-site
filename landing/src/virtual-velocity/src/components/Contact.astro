@@ -1,0 +1,131 @@
+---
+
+const currentLocale = Astro.currentLocale ?? 'es';
+
+import { getTranslations } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const t = getTranslations(currentLocale);
+
+const prayerMsg = encodeURIComponent('Hola, me gustaría compartir una petición de oración.');
+const prayerUrl = `https://wa.me/50600000000?text=${prayerMsg}`;
+const whatsAppUrl = 'https://wa.me/50600000000';
+
+const contactCards = [
+	{
+		icon: 'call',
+		iconWrap: 'bg-secondary-container text-on-secondary-container',
+		label: t['contacto.phone.label'],
+		value: t['contacto.phone.value'],
+		href: 'tel:+50600000000',
+	},
+	{
+		icon: 'chat',
+		iconWrap: 'bg-primary-container text-on-primary-container',
+		label: t['contacto.whatsapp.label'],
+		value: t['contacto.whatsapp.value'],
+		href: whatsAppUrl,
+	},
+	{
+		icon: 'mail',
+		iconWrap: 'bg-tertiary-fixed text-on-tertiary-fixed',
+		label: t['contacto.email.label'],
+		value: t['contacto.email.value'],
+		href: 'mailto:info@ibce.cr',
+	},
+];
+
+const socials = [
+	{ label: t['contacto.social.facebook'], icon: 'thumb_up', href: 'https://www.facebook.com/iglesiabiblicacaminoesperanza' },
+	{ label: t['contacto.social.instagram'], icon: 'photo_camera', href: 'https://www.instagram.com/' },
+	{ label: t['contacto.social.youtube'], icon: 'play_circle', href: 'https://www.youtube.com/' },
+];
+---
+
+<section id="contacto" class="mb-section-gap">
+	<div class="text-center mb-stack-md max-w-2xl mx-auto">
+		<h3 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">
+			{t['contacto.title']}
+		</h3>
+		<p class="text-on-surface-variant">{t['contacto.subtitle']}</p>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-stack-md">
+		{
+			contactCards.map((card) => (
+				<a
+					href={card.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="bg-surface-container-low rounded-xl p-6 border border-surface-container-highest/50 flex flex-col items-center text-center hover:bg-surface-container transition-colors"
+				>
+					<div class={`w-14 h-14 rounded-full ${card.iconWrap} flex items-center justify-center mb-4`}>
+						<span class="material-symbols-outlined text-3xl" data-icon={card.icon}>{card.icon}</span>
+					</div>
+					<p class="font-label-caps text-label-caps text-secondary uppercase mb-1">{card.label}</p>
+					<p class="text-on-surface font-semibold">{card.value}</p>
+				</a>
+			))
+		}
+	</div>
+
+	<div
+		class="bg-surface-container-high rounded-xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 mb-stack-md border border-outline-variant/40"
+	>
+		<div class="flex items-center gap-4">
+			<span class="material-symbols-outlined text-4xl text-primary" data-icon="location_on">location_on</span>
+			<div>
+				<p class="font-label-caps text-label-caps text-secondary uppercase">{t['contacto.address.label']}</p>
+				<p class="text-on-surface font-semibold">{t['contacto.address.value']}</p>
+			</div>
+		</div>
+		<a
+			href={getRelativeLocaleUrl(currentLocale, '/visitanos')}
+			class="bg-transparent border-2 border-secondary text-secondary px-6 py-2 rounded-full font-label-caps text-label-caps hover:bg-secondary hover:text-on-secondary transition-colors flex items-center gap-2 h-12"
+		>
+			<span class="material-symbols-outlined" data-icon="map">map</span>
+			{t['footer.map']}
+		</a>
+	</div>
+
+	<div class="text-center mb-stack-md">
+		<p class="font-label-caps text-label-caps text-primary uppercase mb-4">{t['contacto.social.title']}</p>
+		<div class="flex flex-wrap justify-center gap-4">
+			{
+				socials.map((social) => (
+					<a
+						href={social.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center gap-2 bg-surface-container-low text-on-surface-variant px-4 py-2 rounded-full border border-surface-container-highest hover:bg-surface-container hover:text-primary transition-colors"
+					>
+						<span class="material-symbols-outlined" data-icon={social.icon}>{social.icon}</span>
+						{social.label}
+					</a>
+				))
+			}
+		</div>
+	</div>
+
+	<div
+		id="oracion"
+		class="bg-secondary-container rounded-xl p-6 md:p-10 border border-surface-container-highest/50 flex flex-col items-center text-center"
+	>
+		<span class="material-symbols-outlined text-5xl text-secondary" data-icon="volunteer_activism">
+			volunteer_activism
+		</span>
+		<h4 class="font-headline-md text-headline-md text-on-secondary-container mt-4 mb-2">
+			{t['contacto.prayer.title']}
+		</h4>
+		<p class="text-on-secondary-container max-w-xl mb-6">{t['contacto.prayer.body']}</p>
+		<a
+			href={prayerUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 h-12"
+		>
+			<span class="material-symbols-outlined" data-icon="send">send</span>
+			{t['contacto.prayer.cta']}
+		</a>
+	</div>
+</section>
