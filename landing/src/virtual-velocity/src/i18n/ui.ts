@@ -4,9 +4,9 @@ export const defaultLocale: Locale = 'es';
 
 const ui = {
 	es: {
-		'meta.title': 'IBCE - Iglesia Bíblica Camino de Esperanza',
+		'meta.title': 'Iglesia Bíblica Camino de Esperanza - IBCE - Guayabo de Bagaces, Guanacaste, Costa Rica',
 		'meta.description': 'Un lugar donde encuentras comunidad, fe y esperanza.',
-		'header.brand': 'IBCE - Iglesia Bíblica Camino de Esperanza',
+		'header.brand': 'Iglesia Bíblica Camino de Esperanza - IBCE',
 		'header.languageSwitch': 'Switch to English',
 		'hero.badge': 'Servicios: Domingo 9:00 AM',
 		'hero.title': 'Un lugar donde encuentras comunidad, fe y esperanza',
@@ -144,9 +144,9 @@ const ui = {
 		'footer.copyright': '© 2024 Iglesia Bíblica Camino de Esperanza. Guayabo de Bagaces.'
 	},
 	en: {
-		'meta.title': 'IBCE - Iglesia Bíblica Camino de Esperanza',
+		'meta.title': 'Iglesia Bíblica Camino de Esperanza - IBCE - Guayabo de Bagaces, Guanacaste, Costa Rica',
 		'meta.description': 'A place where you find community, faith, and hope.',
-		'header.brand': 'IBCE - Iglesia Bíblica Camino de Esperanza',
+		'header.brand': 'Iglesia Bíblica Camino de Esperanza - IBCE',
 		'header.languageSwitch': 'Ver en español',
 		'hero.badge': 'Services: Sunday 9:00 AM',
 		'hero.title': 'A place where you find community, faith, and hope',
