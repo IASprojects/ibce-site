@@ -99,11 +99,13 @@ spacing:
 ---
 
 ## Brand & Style
+
 The design system is built upon the concept of "Radical Hospitality." It moves away from cold, institutional aesthetics in favor of a **Warm Modernism** that feels grounded in the earth and elevated by light. The target audience includes both local families and newcomers seeking a sense of belonging in Guayabo de Bagaces.
 
 The visual language balances the stability of a spiritual foundation with the dynamism of a growing community. By utilizing organic tones and soft, human-centric geometry, the UI evokes an emotional response of peace, safety, and transparency. The style avoids harsh shadows and rigid grids, opting instead for breathable layouts and tactile surfaces that feel approachable rather than corporate.
 
 ## Colors
+
 The palette is derived from the natural landscape of Guanacaste—earth, foliage, and sunlight.
 
 - **Primary (Terracotta):** Used for main actions and brand identifiers. It represents the warmth of the community and the "Camino" (path).
@@ -113,12 +115,14 @@ The palette is derived from the natural landscape of Guanacaste—earth, foliage
 - **Text (Deep Charcoal):** Ensures high legibility and contrast against the sand background without the harshness of pure black.
 
 ## Typography
-The typography strategy pairs the structural confidence of **Montserrat** with the friendly, contemporary rhythm of **Be Vietnam Pro**. 
+
+The typography strategy pairs the structural confidence of **Montserrat** with the friendly, contemporary rhythm of **Be Vietnam Pro**.
 
 Headlines should be set with tight letter-spacing to feel impactful and modern. Body text utilizes a generous line height to ensure scriptures and long-form announcements are easy to digest. Use the `label-caps` style for small metadata like dates, categories, or ministry names to provide clear information hierarchy without overwhelming the page.
 
 ## Layout & Spacing
-This design system utilizes a **Fluid-Responsive Grid** with an emphasis on vertical rhythm. 
+
+This design system utilizes a **Fluid-Responsive Grid** with an emphasis on vertical rhythm.
 
 - **Desktop:** 12-column grid with a 1200px max-width to maintain focus.
 - **Mobile:** Single column with 20px side margins to ensure content doesn't feel cramped on smaller devices.
@@ -126,7 +130,8 @@ This design system utilizes a **Fluid-Responsive Grid** with an emphasis on vert
 - **Negative Space:** Don't be afraid of whitespace; it represents the "room to breathe" and "transparency" core to the brand.
 
 ## Elevation & Depth
-Depth is created through **Tonal Layering** rather than heavy drop shadows. 
+
+Depth is created through **Tonal Layering** rather than heavy drop shadows.
 
 1. **Surface 0 (Base):** The Warm Sand background.
 2. **Surface 1 (Cards):** Pure white or a slightly lighter cream than the base, with a very soft, diffused amber-tinted shadow (4% opacity).
@@ -135,7 +140,8 @@ Depth is created through **Tonal Layering** rather than heavy drop shadows.
 Avoid using pure black for shadows; always tint them with the Secondary or Primary color to keep the UI "warm" and cohesive.
 
 ## Shapes
-The shape language is defined by **Soft Roundedness (Radius: 8px - 24px)**. 
+
+The shape language is defined by **Soft Roundedness (Radius: 8px - 24px)**.
 
 - **Standard Buttons/Inputs:** 8px radius.
 - **Content Cards:** 16px radius.
@@ -144,6 +150,7 @@ The shape language is defined by **Soft Roundedness (Radius: 8px - 24px)**.
 These curves remove the "sharp edges" of traditional religious institutions, signaling safety and radical acceptance. Avoid hard 90-degree corners entirely.
 
 ## Components
+
 - **Buttons:** Primary buttons use the Terracotta background with White text. Secondary buttons use a Sage outline. All buttons have a minimum height of 48px to ensure accessibility and a "friendly" hit area.
 - **Cards:** Use for "Upcoming Events" or "Ministries." Cards should feature a subtle border (1px, 10% opacity Charcoal) to define them against the sand background.
 - **Input Fields:** Soft cream background with a slightly darker border. Focus states should use a 2px Terracotta glow.
