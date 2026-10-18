@@ -1,90 +1,83 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { getTranslations } from "../i18n/ui";
-import IBCELogo from "/public/assets/images/logo-ibce.svg";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getTranslations } from '../i18n/ui';
+import IBCELogo from '/public/assets/images/logo-ibce.svg';
 
-const currentLocale = Astro.currentLocale ?? "es";
-const otherLocale = currentLocale === "es" ? "en" : "es";
-const otherUrl = getRelativeLocaleUrl(otherLocale, "/");
+const currentLocale = Astro.currentLocale ?? 'es';
+const otherLocale = currentLocale === 'es' ? 'en' : 'es';
+const otherUrl = getRelativeLocaleUrl(otherLocale, '/');
 const t = getTranslations(currentLocale);
-
 const pathname = Astro.url.pathname;
 
 const navItems = [
 	{
-		href: getRelativeLocaleUrl(currentLocale, "/"),
-		label: t["nav.home"],
-		icon: "home",
+		href: getRelativeLocaleUrl(currentLocale, '/'),
+		label: t['nav.home'],
+		icon: 'home',
 	},
 	{
-		href: getRelativeLocaleUrl(currentLocale, "/visitanos"),
-		label: t["nav.visit"],
-		icon: "location_on",
+		href: getRelativeLocaleUrl(currentLocale, '/visitanos'),
+		label: t['nav.visit'],
+		icon: 'location_on',
 	},
 	{
-		href: getRelativeLocaleUrl(currentLocale, "/nosotros"),
-		label: t["nav.about"],
-		icon: "groups",
+		href: getRelativeLocaleUrl(currentLocale, '/nosotros'),
+		label: t['nav.about'],
+		icon: 'groups',
 	},
 	{
-		href: getRelativeLocaleUrl(currentLocale, "/voluntariado"),
-		label: t["nav.volunteer"],
-		icon: "volunteer_activism",
+		href: getRelativeLocaleUrl(currentLocale, '/voluntariado'),
+		label: t['nav.volunteer'],
+		icon: 'volunteer_activism',
 	},
 	{
-		href: getRelativeLocaleUrl(currentLocale, "/donaciones"),
-		label: t["nav.donate"],
-		icon: "payments",
+		href: getRelativeLocaleUrl(currentLocale, '/donaciones'),
+		label: t['nav.donate'],
+		icon: 'payments',
 	},
 ];
 
 function isActive(href: string): boolean {
-	const normalize = (s: string) => s.replace(/\/+$/, "");
+	const normalize = (value: string) => value.replace(/\/+$/, '') || '/';
 	return normalize(href) === normalize(pathname);
 }
 ---
 
-<header
-	class="shadow-sm fixed top-0 left-0 w-full z-50 flex items-center justify-between px-gutter py-base bg-surface-container-low"
->
-	<div class="flex flex-1 min-w-0 items-center gap-2">
-		<img src={IBCELogo.src} alt="IBCE Logo" class="w-16 h-16 shrink-0" />
-		<h1
-			class="min-w-0 font-headline-md text-headline-md font-bold leading-tight text-primary"
-		>
-			<span class="sm:hidden">{t["header.brandAbbr"]}</span>
-			<span class="hidden sm:inline">{t["header.brand"]}</span>
-		</h1>
-	</div>
-	<nav class="hidden lg:flex items-center gap-1">
-		{
-			navItems.map((item) => (
-				<a
-					href={item.href}
-					class:list={[
-						"px-3 py-2 rounded-full font-label-caps text-label-caps transition-colors hover:bg-surface-container flex items-center gap-1.5",
-						isActive(item.href)
-							? "bg-primary-container text-on-primary-container"
-							: "text-on-surface-variant hover:text-primary",
-					]}
-				>
-					<span
-						class="material-symbols-outlined text-[16px]"
-						data-icon={item.icon}
-					>
-						{item.icon}
-					</span>
-					{item.label}
-				</a>
-			))
-		}
+<a href="#main" class="sr-only fixed left-4 top-4 z-[60] rounded-lg bg-surface-container-lowest px-4 py-3 text-primary focus:not-sr-only focus:outline-2 focus:outline-offset-2 focus:outline-primary">
+	{t['nav.skip']}
+</a>
+<header class="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-outline-variant/40 bg-surface-container-low/95 px-4 py-2 shadow-sm backdrop-blur-sm sm:px-gutter">
+	<a href={getRelativeLocaleUrl(currentLocale, '/')} class="flex min-w-0 flex-1 items-center gap-2 rounded-lg text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" aria-label={t['header.brand']}>
+		<img src={IBCELogo.src} alt="" width="64" height="64" class="h-12 w-12 shrink-0 sm:h-14 sm:w-14" />
+		<span class="min-w-0 font-headline-md text-headline-md font-bold leading-tight">
+			<span class="sm:hidden">{t['header.brandAbbr']}</span>
+			<span class="hidden sm:inline">{t['header.brand']}</span>
+		</span>
+	</a>
+	<nav aria-label={t['nav.primary']} class="hidden items-center gap-1 lg:flex">
+		{navItems.map((item) => (
+			<a
+				href={item.href}
+				aria-current={isActive(item.href) ? 'page' : undefined}
+				class:list={[
+					'flex items-center gap-1.5 rounded-full px-3 py-3 font-label-caps text-label-caps transition-colors hover:bg-surface-container focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+					isActive(item.href)
+						? 'bg-primary-container text-on-primary-container'
+						: 'text-on-surface-variant hover:text-primary',
+				]}
+			>
+				<span class="material-symbols-outlined text-[18px]" aria-hidden="true" data-icon={item.icon}>{item.icon}</span>
+				{item.label}
+			</a>
+		))}
 	</nav>
-	<div class="flex items-center gap-4 ">
-		<a
-			href={otherUrl}
-			class="font-label-caps pl-4 text-label-caps text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-200"
-		>
-			{t["header.languageSwitch"]}
-		</a>
-	</div>
+	<a
+		href={otherUrl}
+		lang={otherLocale}
+		hreflang={otherLocale}
+		aria-label={t['header.languageSwitch']}
+		class="ml-3 min-h-12 shrink-0 rounded-lg px-3 py-3 font-label-caps text-label-caps text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+	>
+		{t['header.languageSwitch']}
+	</a>
 </header>

@@ -14,30 +14,34 @@ function isActive(href: string): boolean {
 const items = [
 	{ href: getRelativeLocaleUrl(currentLocale, '/'), label: t['nav.home'], icon: 'home' },
 	{ href: getRelativeLocaleUrl(currentLocale, '/visitanos'), label: t['nav.visit'], icon: 'location_on' },
-	{ href: getRelativeLocaleUrl(currentLocale, '/voluntariado'), label: t['nav.volunteer'], icon: 'volunteer_activism' },
+	{ href: getRelativeLocaleUrl(currentLocale, '/nosotros'), label: t['nav.about'], icon: 'groups' },
+	{ href: getRelativeLocaleUrl(currentLocale, '/voluntariado'), label: t['nav.volunteer'], shortLabel: t['nav.volunteerShort'], icon: 'volunteer_activism' },
 	{ href: getRelativeLocaleUrl(currentLocale, '/donaciones'), label: t['nav.donate'], icon: 'payments' },
 ];
 ---
 
 <nav
-	class="lg:hidden bg-surface-container dark:bg-surface-container-highest fixed bottom-0 left-0 w-full z-50 grid grid-cols-4 gap-1 items-center px-2 py-2 pb-safe rounded-t-xl"
+	aria-label={t['nav.primary']}
+	class="fixed bottom-0 left-0 z-50 grid w-full grid-cols-5 items-center gap-1 rounded-t-xl border-t border-outline-variant/50 bg-surface-container/95 px-1 py-2 pb-safe shadow-sm backdrop-blur-sm lg:hidden"
 >
 	{
 		items.map((item) => (
 			<a
 				href={item.href}
+				aria-current={isActive(item.href) ? 'page' : undefined}
+				aria-label={item.label}
 				class:list={[
-					'flex min-w-0 flex-col items-center justify-center text-center rounded-full py-1 transition-all active:scale-90 duration-200',
+					'flex min-h-12 min-w-0 flex-col items-center justify-center rounded-full px-1 py-1 text-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-95',
 					{
 						'bg-primary-container text-on-primary-container': isActive(item.href),
 						'text-on-surface-variant hover:text-primary': !isActive(item.href),
 					},
 				]}
 			>
-				<span class:list={['material-symbols-outlined', { 'fill-icon': isActive(item.href) }]} data-icon={item.icon}>
+				<span aria-hidden="true" class:list={['material-symbols-outlined text-[20px]', { 'fill-icon': isActive(item.href) }]} data-icon={item.icon}>
 					{item.icon}
 				</span>
-				<span class="hidden xs:block max-w-full font-label-caps text-label-caps leading-tight mt-1 truncate">{item.label}</span>
+				<span class="mt-1 max-w-full truncate font-label-caps text-[10px] leading-tight sm:text-label-caps">{item.shortLabel ?? item.label}</span>
 			</a>
 		))
 	}

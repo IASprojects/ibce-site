@@ -1,52 +1,71 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getTranslations } from '../i18n/ui';
 
-const t = getTranslations(Astro.currentLocale ?? 'es');
-
+const locale = Astro.currentLocale ?? 'es';
+const t = getTranslations(locale);
+const visitUrl = getRelativeLocaleUrl(locale, '/visitanos');
 const ctaNewUrl =
 	'https://docs.google.com/forms/d/e/1FAIpQLScOfvXhiLUKsv11nsDPHeYaNmFvrRtczR_CFmcIkvU9SclyNw/viewform?usp=publish-editor';
 const ctaLearnUrl = 'https://www.facebook.com/iglesiabiblicacaminoesperanza';
 ---
 
-<section
-	id="inicio"
-	class="relative rounded-xl overflow-hidden mb-section-gap min-h-[707px] flex flex-col justify-end p-6 md:p-12 shadow-sm border border-outline-variant/30"
->
-	<div
-		class="absolute inset-0 bg-cover bg-center"
-		role="img"
-		aria-label={t['hero.title']}
-		style={`background-image: url('${import.meta.env.BASE_URL}assets/images/herosample.png')`}
-	></div>
-	<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent"></div>
-	<div class="relative z-10 max-w-2xl text-center md:text-left mx-auto md:mx-0">
-		<div
-			class="inline-flex items-center gap-2 bg-surface/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full mb-6 border border-primary/20"
-		>
-			<span class="material-symbols-outlined text-[16px] fill-icon" data-icon="location_on">location_on</span>
-			<span class="font-label-caps text-label-caps">{t['hero.badge']}</span>
-		</div>
-		<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">
+<section id="inicio" class="mb-section-gap grid items-center gap-10 py-8 sm:py-12 lg:grid-cols-[1fr_0.92fr] lg:gap-14 lg:py-16">
+	<div class="max-w-2xl">
+		<p class="mb-5 inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-secondary-container/60 px-4 py-2 font-label-caps text-label-caps text-on-secondary-fixed-variant">
+			<span class="material-symbols-outlined text-[18px]" aria-hidden="true" data-icon="schedule">schedule</span>
+			{t['hero.badge']}
+		</p>
+		<h1 class="mb-5 font-display-lg-mobile text-display-lg-mobile text-on-surface sm:text-display-lg lg:font-display-lg lg:text-display-lg">
 			{t['hero.title']}
-			<span class="block text-primary/80 text-[0.7em] mt-2 font-normal leading-tight">{t['hero.subtitle']}</span>
-		</h2>	
-		<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-			<a
-				href={ctaNewUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex items-center justify-center gap-2 h-12"
-			>
-				{t['hero.ctaNew']}
+		</h1>
+		<p class="mb-7 max-w-xl font-body-lg text-body-lg text-on-surface-variant">
+			{t['hero.subtitle']}
+		</p>
+
+		<div class="mb-8 flex flex-col gap-4 border-y border-outline-variant/60 py-5 sm:flex-row sm:gap-8">
+			<div class="flex items-start gap-3">
+				<span class="material-symbols-outlined mt-0.5 text-2xl text-primary" aria-hidden="true" data-icon="event">event</span>
+				<div>
+					<p class="font-label-caps text-label-caps text-on-surface-variant">{t['hero.scheduleLabel']}</p>
+					<p class="font-semibold text-on-surface">{t['hero.schedule']}</p>
+				</div>
+			</div>
+			<a href={visitUrl} class="flex min-h-12 items-start gap-3 rounded-lg text-on-surface transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+				<span class="material-symbols-outlined mt-0.5 text-2xl text-primary" aria-hidden="true" data-icon="location_on">location_on</span>
+				<span>
+					<span class="block font-label-caps text-label-caps text-on-surface-variant">{t['hero.locationLabel']}</span>
+					<span class="block font-semibold">{t['hero.location']}</span>
+				</span>
 			</a>
-			<a
-				href={ctaLearnUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="bg-transparent border-2 border-secondary text-secondary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2 h-12"
-			>
+		</div>
+
+		<div class="flex flex-col gap-3 sm:flex-row">
+			<a href={ctaNewUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 font-label-caps text-label-caps text-on-primary shadow-sm transition-colors hover:bg-on-primary-fixed-variant focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+				{t['hero.ctaNew']}
+				<span class="material-symbols-outlined text-[18px]" aria-hidden="true" data-icon="open_in_new">open_in_new</span>
+			</a>
+			<a href={ctaLearnUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center justify-center rounded-full border border-secondary px-7 py-3 font-label-caps text-label-caps text-secondary transition-colors hover:bg-secondary-container focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
 				{t['hero.ctaLearn']}
 			</a>
 		</div>
 	</div>
+
+	<figure class="relative order-first overflow-hidden rounded-xl border border-outline-variant/40 bg-surface-container lg:order-none">
+		<img
+			src={`${import.meta.env.BASE_URL}assets/images/hero-960.webp`}
+			srcset={`${import.meta.env.BASE_URL}assets/images/hero-640.webp 640w, ${import.meta.env.BASE_URL}assets/images/hero-960.webp 960w, ${import.meta.env.BASE_URL}assets/images/hero-1440.webp 1440w`}
+			sizes="(min-width: 1024px) 46vw, 100vw"
+			width="1440"
+			height="960"
+			alt={t['hero.imageAlt']}
+			fetchpriority="high"
+			decoding="async"
+			class="aspect-[4/3] h-full w-full object-cover object-center"
+		/>
+		<figcaption class="absolute inset-x-4 bottom-4 rounded-lg bg-surface/95 px-4 py-3 text-sm text-on-surface shadow-sm backdrop-blur-sm sm:inset-x-6 sm:bottom-6 sm:max-w-sm">
+			<span class="font-semibold">{t['hero.captionTitle']}</span>
+			<span class="mt-1 block text-on-surface-variant">{t['hero.captionBody']}</span>
+		</figcaption>
+	</figure>
 </section>

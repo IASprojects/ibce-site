@@ -6,10 +6,9 @@ const t = getTranslations(Astro.currentLocale ?? 'es');
 const cards = [
 	{
 		icon: 'waving_hand',
-		iconWrap: 'bg-secondary-container text-on-secondary-container',
+		iconWrap: 'bg-secondary-container text-on-secondary-fixed-variant',
 		title: t['welcome.card1.title'],
 		subtitle: t['welcome.card1.subtitle'],
-		subtitleColor: 'text-secondary',
 		body: t['welcome.card1.body'],
 	},
 	{
@@ -17,44 +16,36 @@ const cards = [
 		iconWrap: 'bg-tertiary-fixed text-on-tertiary-fixed',
 		title: t['welcome.card2.title'],
 		subtitle: t['welcome.card2.subtitle'],
-		subtitleColor: 'text-tertiary',
 		body: t['welcome.card2.body'],
 	},
 	{
 		icon: 'menu_book',
-		iconWrap: 'bg-primary-container text-on-primary-container',
+		iconWrap: 'bg-primary-fixed text-on-primary-fixed',
 		title: t['welcome.card3.title'],
 		subtitle: t['welcome.card3.subtitle'],
-		subtitleColor: 'text-primary',
 		body: t['welcome.card3.body'],
 	},
 ];
 ---
 
-<section id="visitanos" class="mb-section-gap">
-	<div class="text-center mb-stack-md max-w-2xl mx-auto">
-		<h3 class="font-headline-md text-headline-md text-primary mb-2">
+<section id="bienvenida" aria-labelledby="welcome-heading" class="mb-section-gap">
+	<div class="mb-8 max-w-2xl">
+		<p class="mb-2 font-label-caps text-label-caps text-secondary">{t['welcome.eyebrow']}</p>
+		<h2 id="welcome-heading" class="font-headline-md text-headline-md text-on-surface sm:text-[30px] sm:leading-[38px]">
 			{t['welcome.heading']}
-			<span class="block text-sm italic text-on-surface-variant font-normal">{t['welcome.remark']}</span>
-		</h3>
-		<p class="text-on-surface-variant">{t['welcome.paragraph']}</p>
+		</h2>
+		<p class="mt-3 text-on-surface-variant">{t['welcome.paragraph']}</p>
 	</div>
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-		{
-			cards.map((card) => (
-				<div
-					class="bg-surface-container-low rounded-xl p-6 border border-surface-container-highest/50 shadow-[0_4px_20px_rgba(160,63,40,0.04)] flex flex-col items-center text-center group hover:bg-surface-container transition-colors"
-				>
-					<div
-						class={`w-16 h-16 rounded-full ${card.iconWrap} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-					>
-						<span class="material-symbols-outlined text-3xl" data-icon={card.icon}>{card.icon}</span>
-					</div>
-					<h4 class="font-headline-md text-body-lg font-semibold text-on-surface mb-2">{card.title}</h4>
-					<span class={`text-sm italic ${card.subtitleColor} mb-3`}>{card.subtitle}</span>
-					<p class="text-on-surface-variant text-sm">{card.body}</p>
+	<div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+		{cards.map((card) => (
+			<article class="rounded-xl border border-outline-variant/50 bg-surface-container-low p-6 transition-colors hover:bg-surface-container sm:p-7">
+				<div class={`mb-5 flex h-12 w-12 items-center justify-center rounded-full ${card.iconWrap}`}>
+					<span class="material-symbols-outlined text-2xl" aria-hidden="true" data-icon={card.icon}>{card.icon}</span>
 				</div>
-			))
-		}
+				<p class="mb-2 font-label-caps text-label-caps text-primary">{card.subtitle}</p>
+				<h3 class="mb-3 font-headline-md text-[20px] leading-7 text-on-surface">{card.title}</h3>
+				<p class="text-on-surface-variant">{card.body}</p>
+			</article>
+		))}
 	</div>
 </section>
