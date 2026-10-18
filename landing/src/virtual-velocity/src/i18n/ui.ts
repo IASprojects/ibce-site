@@ -68,7 +68,7 @@ const ui = {
 		'nosotros.values.item4': 'Transparencia',
 		'nosotros.gallery.title': 'Vivimos juntos la fe',
 		'nosotros.gallery.body':
-			'Adoración, estudios bíblicos y momentos de comunidad. (Fotos de ejemplo: reemplazar con material real).',
+			'Adoración, estudios bíblicos y momentos de comunidad.',
 		'visitanos.title': 'Visítanos',
 		'visitanos.subtitle':
 			'Queremos que tu primer visita sea sencilla, cálido y lleno de esperanza.',
